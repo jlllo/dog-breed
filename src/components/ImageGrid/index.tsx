@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import ImageFull from '../ImageFull';
 
 const styles = StyleSheet.create({
   item: {
@@ -14,13 +15,15 @@ const styles = StyleSheet.create({
   },
 });
 
-interface Item {
+interface PropsImageGrid {
   url: string
 }
 
-export default function Item({ url }: Item) {
+export default function ImageGrid({ url }: PropsImageGrid) {
+  const [open, setOpen] = useState(false);
+
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => setOpen(true)}>
       <View style={styles.item}>
         <Image
           style={styles.image}
@@ -29,6 +32,7 @@ export default function Item({ url }: Item) {
           }}
         />
       </View>
+      <ImageFull open={open} setOpen={(value) => setOpen(value)} url={url} />
     </TouchableOpacity>
 
   );

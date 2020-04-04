@@ -1,8 +1,8 @@
 import Constants from 'expo-constants';
 import React, { useEffect, useState } from 'react';
 import { FlatList, SafeAreaView, StyleSheet, View } from 'react-native';
-import Item from '../../components/Item';
-import { api } from '../../services/api';
+import ImageGrid from '../../components/ImageGrid';
+import api from '../../services/api';
 import { treatDogs } from '../../services/dateset';
 import { theme } from '../../styles/global';
 
@@ -49,9 +49,8 @@ interface Props {
 
 export default function ListDogs({ breed }: Props) {
   const [dogs, setDogs] = useState([]);
-  // const [breed, setBreed] = useState('husky');
   const start = 0;
-  const [end, setEnd] = useState(5);
+  const [end, setEnd] = useState(28);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [total, setTotal] = useState(0);
@@ -78,7 +77,7 @@ export default function ListDogs({ breed }: Props) {
   function nextPage() {
     if (!loading && end !== total) {
       setLoading(true);
-      setEnd(end + 35 > total ? total - end : end + 35);
+      setEnd(end + 24 > total ? total - end : end + 24);
       setPage(page + 1);
       setLoading(false);
     }
@@ -96,13 +95,11 @@ export default function ListDogs({ breed }: Props) {
   }, [page]);
 
   return (
-
     <View style={styles.mainContainer}>
       <SafeAreaView style={styles.container}>
-
         <FlatList
           data={dogs}
-          renderItem={({ item }) => <Item url={item.link} />}
+          renderItem={({ item }) => <ImageGrid url={item.link} />}
           keyExtractor={(item) => String(item.id)}
           showsVerticalScrollIndicator
           onEndReached={nextPage}
@@ -114,8 +111,3 @@ export default function ListDogs({ breed }: Props) {
     </View>
   );
 }
-
-// <View style={styles.informations}>
-//   <Text style={styles.text}>Total</Text>
-//   <Text style={styles.text}>{total}</Text>
-// </View>

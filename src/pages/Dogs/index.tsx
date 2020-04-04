@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
-import ListDogs from '../../containers/ListDogs';
+import GridDogs from '../../containers/GridDogs';
 
 const styles = StyleSheet.create({
   container: {
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 
 const Dogs = () => (
   <View style={styles.container}>
-    <ListDogs breed="chihuahua" />
+    <GridDogs breed="chihuahua" />
   </View>
 );
 

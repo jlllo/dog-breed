@@ -1,7 +1,7 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import React from 'react';
 import { theme } from '../../styles/global';
-import ListDogs from '../ListDogs';
+import GridDogs from '../GridDogs';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -28,16 +28,16 @@ export default function TopTabDogs() {
       }}
     >
       <Tab.Screen name="Chihuahua">
-        { () => <ListDogs breed="chihuahua" />}
+        { () => <GridDogs breed="chihuahua" />}
       </Tab.Screen>
       <Tab.Screen name="Husky">
-        {() => (<ListDogs breed="husky" />)}
+        {() => (<GridDogs breed="husky" />)}
       </Tab.Screen>
       <Tab.Screen name="Pug">
-        {() => (<ListDogs breed="pug" />)}
+        {() => (<GridDogs breed="pug" />)}
       </Tab.Screen>
       <Tab.Screen name="Labrador">
-        {() => (<ListDogs breed="labrador" />)}
+        {() => (<GridDogs breed="labrador" />)}
       </Tab.Screen>
     </Tab.Navigator>
   );
