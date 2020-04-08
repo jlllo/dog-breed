@@ -1,5 +1,5 @@
-export const treatDogs = (dogs: [], start: number, end: number) => dogs.slice(start, end).map((dog) => ({
+export const treatDogs = (dogs: string[]) => dogs.map((dog) => ({
   id: dogs.indexOf(dog),
   title: `Dog ${dogs.indexOf(dog)}`,
-  link: dog,
+  link: String(dog),
 }));
