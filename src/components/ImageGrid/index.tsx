@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import ImageFull from '../ImageFull';
 
 const styles = StyleSheet.create({
@@ -9,8 +9,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 0,
   },
   image: {
-    width: 88.5,
-    height: 88.5,
+    width: Dimensions.get('window').width / 4.4,
+    height: Dimensions.get('window').width / 4.4,
     borderRadius: 5,
   },
 });
@@ -32,6 +32,7 @@ export default function ImageGrid({ url }: PropsImageGrid) {
           }}
         />
       </View>
+
       <ImageFull open={open} setOpen={(value) => setOpen(value)} url={url} />
     </TouchableOpacity>
 

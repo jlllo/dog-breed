@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import { Overlay } from 'react-native-elements';
+import { theme } from '../../styles/global';
 
 const styles = StyleSheet.create({
   item: {
@@ -12,6 +13,19 @@ const styles = StyleSheet.create({
     width: 355,
     height: 355,
     borderRadius: 5,
+  },
+  buttonContainer: {
+    backgroundColor: theme.primaryColor,
+    width: '40%',
+    borderRadius: 7,
+  },
+  button: {
+    borderRadius: 7,
+    width: '100%',
+    backgroundColor: theme.primaryColor,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
