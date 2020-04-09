@@ -33,3 +33,17 @@ Adotei React Hooks nesse projeto, como nos projetos recentes, por acreditar que 
 - _Jest, Unit e Validação_
 
 Utilizei _Jest_ para testes unitários em algumas _actions_ do _Redux_, além de testes de requisição à _API_.
+
+### Telas
+
+<p align="center">
+  <img      src="https://raw.githubusercontent.com/jlllo/dog-breed/master/tela1.jpg" 
+    height="500" 
+  />
+  <img      src="https://raw.githubusercontent.com/jlllo/dog-breed/master/tela2.jpg" 
+    height="500" 
+  />
+  <img      src="https://raw.githubusercontent.com/jlllo/dog-breed/master/tela3.jpg" 
+    height="500" 
+  />
+</p>
