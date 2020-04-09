@@ -42,6 +42,7 @@ export default function ({ show, handleClose }: Props) {
         onRequestClose={handleClose}
         titleStyle={styles.alertTitle}
         subtitleStyle={styles.alertSubtitle}
+        slideAnimationDuration={400}
       >
         <SCLAlertButton theme={message.theme} onPress={handleClose} textStyle={styles.alertButton}>
           Ok
