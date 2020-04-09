@@ -19,6 +19,7 @@ export const validateToken = async (email: string, token: string) => {
 export const setAxiosData = (token: string, breed: string) => {
   const data = {
     headers: {
+      'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json',
       Authorization: token,
     },
