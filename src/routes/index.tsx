@@ -5,7 +5,7 @@ import { Button, Icon } from 'react-native-elements';
 import { useDispatch } from 'react-redux';
 import Dogs from '../pages/Dogs';
 import Register from '../pages/Register';
-import { clearDogs, setLoading, setToken } from '../store/ducks/DogsBreedData/actions';
+import { clearDogs, setAuthenticated, setLoading, setToken } from '../store/ducks/DogsBreedData/actions';
 import { theme } from '../styles/global';
 
 const Stack = createStackNavigator();
@@ -17,6 +17,7 @@ function Routes() {
     dispatch(setToken(''));
     dispatch(clearDogs());
     dispatch(setLoading(false));
+    dispatch(setAuthenticated(false));
   };
 
   return (

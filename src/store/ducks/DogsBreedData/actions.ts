@@ -17,6 +17,8 @@ export const setEmail = (email: string) => action(DogsBreedTypes.SET_EMAIL, emai
 
 export const setToken = (token: string) => action(DogsBreedTypes.SET_TOKEN, token);
 
+export const setAuthenticated = (authenticated: boolean) => action(DogsBreedTypes.SET_AUTHENTICATED, authenticated);
+
 export const setLoading = (loading: boolean) => action(DogsBreedTypes.SET_LOADING, loading);
 
 export const loadFailure = () => action(DogsBreedTypes.LOAD_FAILURE);

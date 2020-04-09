@@ -24,6 +24,7 @@ const INITIAL_STATE: DogsBreedDataState = {
       },
     ],
   },
+  authenticated: false,
   loading: true,
   error: false,
   message: {
@@ -107,6 +108,11 @@ const reducer: Reducer<DogsBreedDataState> = (state = INITIAL_STATE, action) => 
     case DogsBreedTypes.SET_TOKEN:
       return {
         ...state, loading: true, error: false, token: action.payload,
+      };
+
+    case DogsBreedTypes.SET_AUTHENTICATED:
+      return {
+        ...state, authenticated: action.payload,
       };
 
     case DogsBreedTypes.SET_LOADING:

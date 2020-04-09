@@ -23,7 +23,7 @@ export default function Dogs({ navigation }) {
   const { loading, token } = useSelector((state: ApplicationState) => state.dogsBreedData);
 
   useEffect(() => {
-    if (token === '') {
+    if (!token) {
       navigation.navigate('Register');
     }
   }, [token]);

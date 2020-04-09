@@ -1,7 +1,7 @@
 import { all, call, put } from 'redux-saga/effects';
 import api, { setAxiosData } from '../../../services/api';
 import { treatDogs } from '../../../services/dateset';
-import { loadDogsChihuahua, loadDogsHusky, loadDogsLabrador, loadDogsPug, loadFailure, setToken } from './actions';
+import { loadDogsChihuahua, loadDogsHusky, loadDogsLabrador, loadDogsPug, loadFailure, setAuthenticated, setToken } from './actions';
 import { ApplicationState, DogsBreedData, DogsBreedDataState } from './types';
 
 function* dogsRequest(dogs : DogsBreedData, breed: string, token: string) {
@@ -44,6 +44,7 @@ export function* authenticate(state: ApplicationState) {
     const { token } = response.data.user;
 
     yield put(setToken(token));
+    yield put(setAuthenticated(true));
     yield call(loadDogs, {
       ...state.dogsBreedData, token,
     });

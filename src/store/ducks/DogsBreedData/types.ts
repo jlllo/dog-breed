@@ -5,6 +5,7 @@
 export enum DogsBreedTypes {
   SET_EMAIL = '@DOG_BREED_DATA/SET_EMAIL',
   SET_TOKEN = '@DOG_BREED_DATA/SET_TOKEN',
+  SET_AUTHENTICATED = '@DOG_BREED_DATA/SET_AUTHENTICATED',
   SET_LOADING = '@DOG_BREED_DATA/SET_LOADING',
   SET_BREED = '@DOG_BREED_DATA/SET_BREED',
   GET_STATE_DATA = '@DOG_BREED_DATA/GET_STATE_DATA',
@@ -53,6 +54,7 @@ export interface DogsBreedDataState {
   token: string
   breeds: string[]
   dogs: DogsBreedData
+  authenticated: boolean
   loading: boolean
   error: boolean
   message: MessageData,

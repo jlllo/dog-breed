@@ -6,7 +6,7 @@ import { Button } from 'react-native-elements';
 import { useDispatch, useSelector } from 'react-redux';
 import Alert from '../../components/Alert';
 import { isValidEmail } from '../../services/validation';
-import { setEmail, setMessage, setShowMessage } from '../../store/ducks/DogsBreedData/actions';
+import { loadFailure, setEmail, setMessage, setShowMessage } from '../../store/ducks/DogsBreedData/actions';
 import { ApplicationState } from '../../store/ducks/DogsBreedData/types';
 import { theme } from '../../styles/global';
 
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
 });
 
 export default function Register({ navigation }) {
-  const { message, email, loading, token } = useSelector((state: ApplicationState) => state.dogsBreedData);
+  const { authenticated, error, token, message, email, loading } = useSelector((state: ApplicationState) => state.dogsBreedData);
   const dispatch = useDispatch();
   const [registering, setRegistering] = useState(false);
 
@@ -68,11 +68,33 @@ export default function Register({ navigation }) {
     dispatch(setShowMessage(false));
   };
 
+  const handleErrors = () => {
+    if (isValidEmail(email) && registering && error && !token) {
+      dispatch(setMessage({
+        theme: 'warning',
+        title: 'Warning',
+        subtitle: 'API is not responding.',
+        show: false,
+      }));
+      dispatch(setShowMessage(true));
+    } else if (!isValidEmail(email) && registering) {
+      dispatch(setMessage({
+        theme: 'danger',
+        title: 'Error',
+        subtitle: 'Type a valid e-mail.',
+        show: true,
+      }));
+    }
+  };
+
   useEffect(() => {
-    if (!loading && registering) {
+    handleErrors();
+    if (isValidEmail(email) && registering && loading && authenticated) {
+      navigation.navigate('Dogs');
+    } else if (!loading && registering) {
       setRegistering(false);
     }
-  }, [loading, registering]);
+  }, [authenticated, loading, registering, token, error]);
 
   const handleChange = (value: React.SetStateAction<string>) => {
     dispatch(setEmail(String(value)));
@@ -84,28 +106,13 @@ export default function Register({ navigation }) {
 
   function handleRegister() {
     if (isValidEmail(email)) {
+      dispatch(setEmail(email));
       setRegistering(true);
-      if (token !== '') {
-        setTimeout(() => navigation.navigate('Dogs'), 600);
-      } else {
-        dispatch(setMessage({
-          theme: 'warning',
-          title: 'Warning',
-          subtitle: 'API is not responding.',
-          show: false,
-        }));
-      }
       setTimeout(() => setRegistering(false), 1000);
-      setTimeout(() => dispatch(setShowMessage(true)), 1000);
     } else {
       setRegistering(true);
+      dispatch(loadFailure());
       setTimeout(() => setRegistering(false), 600);
-      setTimeout(() => dispatch(setMessage({
-        theme: 'danger',
-        title: 'Error',
-        subtitle: 'Type a valid e-mail.',
-        show: true,
-      })), 600);
     }
   }
 
